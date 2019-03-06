@@ -41,6 +41,16 @@ class Ticket
      */
     private $offer;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Seat", cascade={"persist", "remove"})
+     */
+    private $seat;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Mission", inversedBy="tickets")
+     */
+    private $mission;
+
     public function __construct()
     {
         $this->luggage = new ArrayCollection();
@@ -129,6 +139,30 @@ class Ticket
         if ($this->offer->contains($offer)) {
             $this->offer->removeElement($offer);
         }
+
+        return $this;
+    }
+
+    public function getSeat(): ?Seat
+    {
+        return $this->seat;
+    }
+
+    public function setSeat(?Seat $seat): self
+    {
+        $this->seat = $seat;
+
+        return $this;
+    }
+
+    public function getMission(): ?Mission
+    {
+        return $this->mission;
+    }
+
+    public function setMission(?Mission $mission): self
+    {
+        $this->mission = $mission;
 
         return $this;
     }
