@@ -29,7 +29,7 @@ class Pilot
     private $grade;
 
     /**
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="string", length=20)
      */
     private $phone;
 
