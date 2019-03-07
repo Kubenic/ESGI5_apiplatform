@@ -30,9 +30,15 @@ class Company
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Plane", mappedBy="company")
+     */
+    private $planes;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->planes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,6 +83,37 @@ class Company
             // set the owning side to null (unless already changed)
             if ($user->getCompany() === $this) {
                 $user->setCompany(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Plane[]
+     */
+    public function getPlanes(): Collection
+    {
+        return $this->planes;
+    }
+
+    public function addPlane(Plane $plane): self
+    {
+        if (!$this->planes->contains($plane)) {
+            $this->planes[] = $plane;
+            $plane->setCompany($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlane(Plane $plane): self
+    {
+        if ($this->planes->contains($plane)) {
+            $this->planes->removeElement($plane);
+            // set the owning side to null (unless already changed)
+            if ($plane->getCompany() === $this) {
+                $plane->setCompany(null);
             }
         }
 
