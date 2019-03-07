@@ -14,9 +14,10 @@ class PilotFixtures extends Fixture
         $faker = Factory::create('fr_FR');
         for ($i = 0; $i < 5; $i++) {
             $pilot = new Pilot();
-            $pilot->setName($faker->lastName);
-            $pilot->setPhone($faker->mobileNumber);
-            $pilot->setGrade($faker->colorName);
+            $pilot
+                ->setName($faker->lastName)
+                ->setPhone($faker->mobileNumber)
+                ->setGrade($faker->colorName);
             $manager->persist($pilot);
         }
 

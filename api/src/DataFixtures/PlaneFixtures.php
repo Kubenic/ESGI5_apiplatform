@@ -18,12 +18,13 @@ class PlaneFixtures extends Fixture implements DependentFixtureInterface
         $companies = $manager->getRepository(Company::class)->findAll();
 
         $faker = Factory::create('fr_FR');
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 2; $i++) {
             $plane = new Plane();
-            $plane->setName($faker->vat);
-            $plane->setCapacity('500');
-            $plane->setPilot($pilots[$i]);
-            $plane->setCompany($companies[$i]);
+            $plane
+                ->setName($faker->vat)
+                ->setCapacity('50')
+                ->setPilot($pilots[$i])
+                ->setCompany($companies[$i]);
             $manager->persist($plane);
         }
 
