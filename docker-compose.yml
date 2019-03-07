@@ -80,7 +80,7 @@ services:
       - ./client/.env
     volumes:
       - ./client:/usr/src/client:rw,cached
-      - /usr/src/client/node_modules
+      #- /usr/src/client/node_modules
     ports:
       - "80:3000"
 
