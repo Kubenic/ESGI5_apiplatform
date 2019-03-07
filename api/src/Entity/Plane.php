@@ -3,12 +3,17 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"plane:output"}},
+ *     denormalizationContext={"groups"={"plane:input"}}
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\PlaneRepository")
  */
 class Plane
@@ -17,31 +22,38 @@ class Plane
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"plane:input"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"plane:output","user:input"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"plane:output","user:input"})
      */
     private $capacity;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Pilot", cascade={"persist", "remove"})
+     * @Groups({"plane:output","user:input"})
      */
     private $Pilot;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Mission", inversedBy="planes")
+     * @Groups({"plane:output"})
      */
     private $Mission;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Company", cascade={"persist", "remove"})
+     * @Groups({"plane:output","user:input"})
+     * @ApiSubresource()
      */
     private $company;
 
