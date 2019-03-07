@@ -4,13 +4,15 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use App\Entity\Luggage;
 
-class AppFixtures extends Fixture
+class LuggageFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        $luggage = new Luggage();
+        $luggage->setWeight('50');
+        $manager->persist($luggage);
 
         $manager->flush();
     }
