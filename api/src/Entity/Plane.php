@@ -51,7 +51,7 @@ class Plane
     private $Mission;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Company", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Company", inversedBy="planes")
      * @Groups({"plane:output","user:input"})
      * @ApiSubresource()
      */
