@@ -63,10 +63,7 @@
             "branch": "master",
             "version": "3.0",
             "ref": "fc52d86631a6dfd9fdf3381d0b7e3df2069e51b3"
-        },
-        "files": [
-            "src/DataFixtures/AppFixtures.php"
-        ]
+        }
     },
     "doctrine/event-manager": {
         "version": "v1.0.0"
