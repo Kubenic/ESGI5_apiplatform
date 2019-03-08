@@ -55,11 +55,11 @@ class HashPasswordSubscriber implements EventSubscriberInterface
         $user = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();
 
-        if(!$user instanceof User || Request::METHOD_POST !== $method) {
+        if (!$user instanceof User || Request::METHOD_POST !== $method) {
             return;
         }
 
-        $encoded = $this->encoder->encodePassword($user,$user->getPassword());
+        $encoded = $this->encoder->encodePassword($user, $user->getPassword());
         $user->setPassword($encoded);
     }
 }

@@ -14,13 +14,13 @@ class SeatFixtures extends Fixture
 
         for ($i = 0; $i < 25; $i++) {
             $seat = new Seat();
-            $seat->setName('A'.$i);
+            $seat->setName('A' . $i);
             $seat->setStatus(0);
             $manager->persist($seat);
         }
         for ($i = 0; $i < 25; $i++) {
             $seat = new Seat();
-            $seat->setName('B'.$i);
+            $seat->setName('B' . $i);
             $seat->setStatus(0);
             $manager->persist($seat);
         }
