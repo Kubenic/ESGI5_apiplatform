@@ -9,7 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperation={
+ *          "post"={"access_control"="is_granted('MISSION_UPDATE', object)"},
+ *          "get"
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\MissionRepository")
  */
 class Mission

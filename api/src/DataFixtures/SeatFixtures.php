@@ -10,10 +10,20 @@ class SeatFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $seat = new Seat();
-        $seat->setName('A01');
-        $seat->setStatus(1);
-        $manager->persist($seat);
+
+
+        for ($i = 0; $i < 25; $i++) {
+            $seat = new Seat();
+            $seat->setName('A'.$i);
+            $seat->setStatus(0);
+            $manager->persist($seat);
+        }
+        for ($i = 0; $i < 25; $i++) {
+            $seat = new Seat();
+            $seat->setName('B'.$i);
+            $seat->setStatus(0);
+            $manager->persist($seat);
+        }
 
         $manager->flush();
     }
