@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource()
@@ -22,11 +23,17 @@ class Mission
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
+     * @Assert\DateTime()
      */
     private $start_date;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
+     * @Assert\DateTime()
+     * @Assert\GreaterThan(propertyPath="start_date")
+     * @Assert\NotEqualTo(propertyPath="start_date")
      */
     private $end_date;
 
