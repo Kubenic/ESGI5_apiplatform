@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -18,17 +20,20 @@ class Plane
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"plane:input"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"plane:output","user:input"})
      * @Assert\NotBlank()
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"plane:output","user:input"})
      * @Assert\NotBlank()
      * @Assert\GreaterThan(20)
      */
@@ -36,16 +41,20 @@ class Plane
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Pilot", cascade={"persist", "remove"})
+     * @Groups({"plane:output","user:input"})
      */
     private $Pilot;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Mission", inversedBy="planes")
+     * @Groups({"plane:output"})
      */
     private $Mission;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Company", inversedBy="planes")
+     * @Groups({"plane:output","user:input"})
+     * @ApiSubresource()
      */
     private $company;
 
