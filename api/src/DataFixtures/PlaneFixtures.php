@@ -22,7 +22,7 @@ class PlaneFixtures extends Fixture implements DependentFixtureInterface
             $plane = new Plane();
             $plane
                 ->setName($faker->vat)
-                ->setCapacity('50')
+                ->setCapacity(25)
                 ->setPilot($pilots[$i])
                 ->setCompany($companies[$i]);
             $manager->persist($plane);
