@@ -7,7 +7,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={
+ *          "get"
+ *     },
+ *     itemOperations={
+ *          "get"
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\MissionStatusRepository")
  */
 class MissionStatus
